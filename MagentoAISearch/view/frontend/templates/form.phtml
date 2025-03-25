@@ -1,0 +1,99 @@
+<?php
+/**
+ * AISearch Magento Extension
+ *
+ * @category  Magento
+ * @package   Magento_AISearch
+ * @author    Magento
+ * @copyright Copyright (c) Magento (https://www.magento.com)
+ */
+
+/** @var \Magento\AISearch\Block\Search\Form $block */
+?>
+
+<?php if ($block->isEnabled()): ?>
+<div class="aisearch-container">
+    <div class="aisearch-tabs">
+        <?php if ($block->isImageSearchEnabled()): ?>
+        <div class="tab active" data-target="image-search"><?= $block->escapeHtml(__('Search by Image')) ?></div>
+        <?php endif; ?>
+        <?php if ($block->isVoiceSearchEnabled()): ?>
+        <div class="tab<?= !$block->isImageSearchEnabled() ? ' active' : '' ?>" data-target="voice-search"><?= $block->escapeHtml(__('Search by Voice')) ?></div>
+        <?php endif; ?>
+    </div>
+    
+    <div class="aisearch-content">
+        <?php if ($block->isImageSearchEnabled()): ?>
+        <div class="tab-pane active" id="image-search">
+            <div class="image-search-container">
+                <div id="image-search-droparea">
+                    <p><?= $block->escapeHtml(__('Drag & drop an image here or click the button below')) ?></p>
+                    <p class="allowed-types"><?= $block->escapeHtml(__('Allowed: %1, Max: %2 KB', $block->getAllowedFileTypes(), $block->getMaxFileSize())) ?></p>
+                </div>
+                
+                <button type="button" id="image-search-button"><?= $block->escapeHtml(__('Select Image')) ?></button>
+                <input type="file" id="image-search-file" accept="<?= $block->escapeHtml('.' . str_replace(',', ',.', $block->getAllowedFileTypes())) ?>" />
+                
+                <div id="image-search-preview"></div>
+                <div id="image-search-status" class="aisearch-status"></div>
+            </div>
+        </div>
+        <?php endif; ?>
+        
+        <?php if ($block->isVoiceSearchEnabled()): ?>
+        <div class="tab-pane<?= !$block->isImageSearchEnabled() ? ' active' : '' ?>" id="voice-search">
+            <div class="voice-search-container">
+                <button type="button" id="voice-search-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                    <?= $block->escapeHtml(__('Start Voice Search')) ?>
+                </button>
+                
+                <input type="text" id="voice-search-text" readonly placeholder="<?= $block->escapeHtml(__('Your speech will appear here...')) ?>" />
+                <div id="voice-search-status" class="aisearch-status"></div>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_AISearch/js/image-search": {
+            "uploadUrl": "<?= $block->escapeJs($block->getImageSearchUrl()) ?>",
+            "maxFileSize": <?= (int)$block->getMaxFileSize() ?>,
+            "allowedFileTypes": "<?= $block->escapeJs($block->getAllowedFileTypes()) ?>"
+        },
+        "Magento_AISearch/js/voice-search": {
+            "searchUrl": "<?= $block->escapeJs($block->getVoiceSearchUrl()) ?>",
+            "maxRecordingTime": <?= (int)$block->getMaxRecordingTime() ?>,
+            "language": "<?= $block->escapeJs($block->getVoiceRecognitionLanguage()) ?>"
+        }
+    }
+}
+</script>
+
+<script>
+require(['jquery'], function($) {
+    'use strict';
+    
+    // Handle tab switching
+    $('.aisearch-tabs .tab').on('click', function() {
+        var target = $(this).data('target');
+        
+        // Update active tab
+        $('.aisearch-tabs .tab').removeClass('active');
+        $(this).addClass('active');
+        
+        // Update active content
+        $('.aisearch-content .tab-pane').removeClass('active');
+        $('#' + target).addClass('active');
+    });
+});
+</script>
+<?php endif; ?>

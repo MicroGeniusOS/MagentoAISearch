@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * AISearch Magento Extension
+ *
+ * @category  Magento
+ * @package   Magento_AISearch
+ * @author    Magento
+ * @copyright Copyright (c) Magento (https://www.magento.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Magento_AISearch" setup_version="1.0.0">
+        <sequence>
+            <!-- Core dependencies -->
+            <module name="Magento_CatalogSearch"/>
+            <module name="Magento_Search"/>
+            <module name="Magento_Store"/>
+            <module name="Magento_Catalog"/>
+            <module name="Magento_Customer"/>
+            
+            <!-- Commerce-specific dependencies -->
+            <module name="Magento_SharedCatalog"/>
+            <module name="Magento_Company"/>
+            <module name="Magento_AdvancedSearch"/>
+            <module name="Magento_CustomerSegment"/>
+            <module name="Magento_InventoryApi"/>
+            <module name="Magento_Staging"/>
+            <module name="Magento_B2b"/>
+        </sequence>
+    </module>
+</config>

@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * AISearch Magento Extension
+ *
+ * @category  Magento
+ * @package   Magento_AISearch
+ * @author    Magento
+ * @copyright Copyright (c) Magento (https://www.magento.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\AISearch\Api\ImageSearchInterface" type="Magento\AISearch\Model\ImageSearch"/>
+    <preference for="Magento\AISearch\Api\VoiceSearchInterface" type="Magento\AISearch\Model\VoiceSearch"/>
+    <type name="Magento\AISearch\Model\Config">
+        <arguments>
+            <argument name="scopeConfig" xsi:type="object">Magento\Framework\App\Config\ScopeConfigInterface</argument>
+        </arguments>
+    </type>
+    <type name="Magento\AISearch\Model\CommerceIntegration">
+        <arguments>
+            <argument name="scopeConfig" xsi:type="object">Magento\Framework\App\Config\ScopeConfigInterface</argument>
+            <argument name="storeManager" xsi:type="object">Magento\Store\Model\StoreManagerInterface</argument>
+            <argument name="customerSession" xsi:type="object">Magento\Customer\Model\Session</argument>
+        </arguments>
+    </type>
+    <!-- Commerce integration for image search -->
+    <type name="Magento\AISearch\Model\ImageSearch">
+        <arguments>
+            <argument name="commerceIntegration" xsi:type="object">Magento\AISearch\Model\CommerceIntegration</argument>
+        </arguments>
+    </type>
+    <!-- Commerce integration for voice search -->
+    <type name="Magento\AISearch\Model\VoiceSearch">
+        <arguments>
+            <argument name="commerceIntegration" xsi:type="object">Magento\AISearch\Model\CommerceIntegration</argument>
+        </arguments>
+    </type>
+</config>

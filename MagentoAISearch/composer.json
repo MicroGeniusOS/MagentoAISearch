@@ -1,0 +1,34 @@
+{
+    "name": "magento/module-aisearch",
+    "description": "A Magento Commerce extension that adds AI-powered image and voice search capabilities with advanced B2B and multi-store features",
+    "require": {
+        "php": "~8.3.0||~8.4.0",
+        "magento/framework": "*",
+        "magento/module-catalog-search": "*",
+        "magento/module-search": "*",
+        "magento/module-store": "*",
+        "magento/module-catalog": "*",
+        "magento/module-customer": "*",
+        "magento/module-shared-catalog": "*",
+        "magento/module-company": "*",
+        "magento/module-advanced-search": "*",
+        "magento/module-customer-segment": "*",
+        "magento/module-inventory-api": "*",
+        "magento/module-staging": "*",
+        "magento/module-b2b": "*"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Magento\\AISearch\\": ""
+        }
+    }
+}

@@ -1,0 +1,77 @@
+<?php
+/**
+ * AISearch Magento Extension
+ *
+ * @category  Magento
+ * @package   Magento_AISearch
+ * @author    Magento
+ * @copyright Copyright (c) Magento (https://www.magento.com)
+ */
+
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+
+<div class="api-test-container">
+    <button type="button" id="test-api-connection" class="action-default">
+        <?= $escaper->escapeHtml(__('Test API Connection')) ?>
+    </button>
+    <span id="api-test-result"></span>
+</div>
+
+<script>
+require(['jquery'], function($) {
+    'use strict';
+    
+    $('#test-api-connection').on('click', function() {
+        var apiKey = $('#aisearch_image_search_google_cloud_vision_api_key').val();
+        var resultElem = $('#api-test-result');
+        
+        if (!apiKey) {
+            resultElem.html('<span class="api-error"><?= $escaper->escapeJs(__('Please enter an API key first.')) ?></span>');
+            return;
+        }
+        
+        resultElem.html('<span class="api-testing"><?= $escaper->escapeJs(__('Testing API connection...')) ?></span>');
+        
+        $.ajax({
+            url: '<?= $escaper->escapeJs($block->getUrl('aisearch/config/testapi')) ?>',
+            type: 'POST',
+            data: {
+                api_key: apiKey
+            },
+            success: function(response) {
+                if (response.success) {
+                    resultElem.html('<span class="api-success"><?= $escaper->escapeJs(__('Connection successful!')) ?></span>');
+                } else {
+                    resultElem.html('<span class="api-error"><?= $escaper->escapeJs(__('Connection failed: ')) ?>' + response.message + '</span>');
+                }
+            },
+            error: function() {
+                resultElem.html('<span class="api-error"><?= $escaper->escapeJs(__('Connection test failed. Please try again.')) ?></span>');
+            }
+        });
+    });
+});
+</script>
+
+<style>
+.api-test-container {
+    margin: 10px 0;
+}
+.api-success {
+    color: #006400;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.api-error {
+    color: #e02b27;
+    font-weight: bold;
+    margin-left: 10px;
+}
+.api-testing {
+    color: #eb5202;
+    font-weight: bold;
+    margin-left: 10px;
+}
+</style>

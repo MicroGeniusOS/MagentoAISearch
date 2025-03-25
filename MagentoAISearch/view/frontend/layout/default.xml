@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * AISearch Magento Extension
+ *
+ * @category  Magento
+ * @package   Magento_AISearch
+ * @author    Magento
+ * @copyright Copyright (c) Magento (https://www.magento.com)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magento_AISearch::css/aisearch.css"/>
+    </head>
+    <body>
+        <referenceContainer name="header-wrapper">
+            <container name="aisearch.container" htmlTag="div" htmlClass="aisearch-header-container" after="top.search">
+                <block class="Magento\AISearch\Block\Search\Form" name="aisearch.form" template="Magento_AISearch::form.phtml" />
+            </container>
+        </referenceContainer>
+    </body>
+</page>

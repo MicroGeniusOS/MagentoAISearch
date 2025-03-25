@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * AISearch Magento Extension - Commerce Specific Configuration
+ *
+ * @category  Magento
+ * @package   Magento_AISearch
+ * @author    Magento
+ * @copyright Copyright (c) Magento (https://www.magento.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <commerce_features>
+        <!-- B2B Integration -->
+        <b2b_integration>
+            <enabled>true</enabled>
+            <shared_catalog>
+                <enabled>true</enabled>
+                <respect_permissions>true</respect_permissions>
+                <filter_algorithm>standard</filter_algorithm>
+                <priority>100</priority>
+            </shared_catalog>
+            <company_accounts>
+                <enabled>true</enabled>
+                <respect_company_structure>true</respect_company_structure>
+                <hierarchy_depth>unlimited</hierarchy_depth>
+                <respect_role_permissions>true</respect_role_permissions>
+            </company_accounts>
+            <requisition_lists>
+                <enabled>true</enabled>
+                <respect_permissions>true</respect_permissions>
+                <enhance_search>true</enhance_search>
+            </requisition_lists>
+            <quotes>
+                <enabled>true</enabled>
+                <respect_quotes>true</respect_quotes>
+                <enhance_search>true</enhance_search>
+            </quotes>
+        </b2b_integration>
+        
+        <!-- Advanced Inventory Integration (MSI) -->
+        <msi_integration>
+            <enabled>true</enabled>
+            <respect_source>true</respect_source>
+            <respect_stock>true</respect_stock>
+            <stock_priority>high</stock_priority>
+            <inventory_channels>
+                <enabled>true</enabled>
+                <respect_channel_inventory>true</respect_channel_inventory>
+            </inventory_channels>
+            <reservation_system>
+                <enabled>true</enabled>
+                <respect_reservations>true</respect_reservations>
+            </reservation_system>
+            <distance_priority>
+                <enabled>true</enabled>
+                <algorithm>nearest_source_first</algorithm>
+            </distance_priority>
+        </msi_integration>
+        
+        <!-- Content Staging Integration -->
+        <content_staging>
+            <enabled>true</enabled>
+            <respect_scheduling>true</respect_scheduling>
+            <preview_mode>
+                <enabled>true</enabled>
+                <respect_preview_version>true</respect_preview_version>
+            </preview_mode>
+            <scheduled_updates>
+                <enabled>true</enabled>
+                <respect_future_updates>true</respect_future_updates>
+            </scheduled_updates>
+            <campaign_integration>
+                <enabled>true</enabled>
+                <respect_campaign_schedule>true</respect_campaign_schedule>
+            </campaign_integration>
+        </content_staging>
+        
+        <!-- Customer Segmentation -->
+        <customer_segments>
+            <enabled>true</enabled>
+            <respect_segments>true</respect_segments>
+            <segment_priority>
+                <enabled>true</enabled>
+                <algorithm>weighted</algorithm>
+            </segment_priority>
+            <real_time_segmentation>
+                <enabled>true</enabled>
+                <refresh_on_search>true</refresh_on_search>
+            </real_time_segmentation>
+            <personalization>
+                <enabled>true</enabled>
+                <boost_factor>1.5</boost_factor>
+            </personalization>
+        </customer_segments>
+        
+        <!-- Multi-Store Support -->
+        <multi_store>
+            <enabled>true</enabled>
+            <respect_scope>true</respect_scope>
+            <store_localization>
+                <enabled>true</enabled>
+                <respect_store_locale>true</respect_store_locale>
+            </store_localization>
+            <website_specific_catalog>
+                <enabled>true</enabled>
+                <respect_website_catalog>true</respect_website_catalog>
+            </website_specific_catalog>
+            <store_view_customization>
+                <enabled>true</enabled>
+                <respect_customizations>true</respect_customizations>
+            </store_view_customization>
+        </multi_store>
+    </commerce_features>
+</config>

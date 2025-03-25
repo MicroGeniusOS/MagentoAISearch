@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * AISearch Magento Extension
+ *
+ * @category  Magento
+ * @package   Magento_AISearch
+ * @author    Magento
+ * @copyright Copyright (c) Magento (https://www.magento.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="magento" translate="label" sortOrder="100">
+            <label>Magento Extensions</label>
+        </tab>
+        <section id="aisearch" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>AI Search</label>
+            <tab>magento</tab>
+            <resource>Magento_AISearch::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable AI Search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="image_search" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Image Search Configuration</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Image Search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="aisearch/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="google_cloud_vision_api_key" translate="label" type="obscure" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Cloud Vision API Key</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <depends>
+                        <field id="aisearch/image_search/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="max_file_size" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Maximum File Size (KB)</label>
+                    <validate>validate-number</validate>
+                    <comment>Maximum file size for image uploads in kilobytes</comment>
+                    <depends>
+                        <field id="aisearch/image_search/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="allowed_file_types" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allowed File Types</label>
+                    <comment>Comma separated list (e.g., jpg,jpeg,png)</comment>
+                    <depends>
+                        <field id="aisearch/image_search/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="voice_search" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Voice Search Configuration</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Voice Search</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="aisearch/general/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="max_recording_time" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Maximum Recording Time (seconds)</label>
+                    <validate>validate-number</validate>
+                    <comment>Maximum time for voice recording in seconds</comment>
+                    <depends>
+                        <field id="aisearch/voice_search/enabled">1</field>
+                    </depends>
+                </field>
+                <field id="language" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Speech Recognition Language</label>
+                    <source_model>Magento\AISearch\Model\Config\Source\Language</source_model>
+                    <depends>
+                        <field id="aisearch/voice_search/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

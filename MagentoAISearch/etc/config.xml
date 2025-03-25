@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * AISearch Magento Extension
+ *
+ * @category  Magento
+ * @package   Magento_AISearch
+ * @author    Magento
+ * @copyright Copyright (c) Magento (https://www.magento.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <aisearch>
+            <general>
+                <enabled>0</enabled>
+            </general>
+            <image_search>
+                <enabled>0</enabled>
+                <max_file_size>5120</max_file_size>
+                <allowed_file_types>jpg,jpeg,png</allowed_file_types>
+            </image_search>
+            <voice_search>
+                <enabled>0</enabled>
+                <max_recording_time>10</max_recording_time>
+                <language>en-US</language>
+            </voice_search>
+        </aisearch>
+    </default>
+</config>

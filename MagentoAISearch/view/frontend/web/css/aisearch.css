@@ -1,0 +1,185 @@
+/**
+ * AISearch Magento Extension
+ *
+ * @category  Magento
+ * @package   Magento_AISearch
+ * @author    Magento
+ * @copyright Copyright (c) Magento (https://www.magento.com)
+ */
+
+/* AISearch container */
+.aisearch-container {
+    margin-bottom: 20px;
+}
+
+/* AISearch tab navigation */
+.aisearch-tabs {
+    display: flex;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #cccccc;
+}
+
+.aisearch-tabs .tab {
+    padding: 10px 15px;
+    cursor: pointer;
+    background: #f0f0f0;
+    border: 1px solid #cccccc;
+    border-bottom: none;
+    margin-right: 5px;
+    border-radius: 3px 3px 0 0;
+}
+
+.aisearch-tabs .tab.active {
+    background: #ffffff;
+    border-bottom: 1px solid #ffffff;
+    margin-bottom: -1px;
+}
+
+/* AISearch tab content */
+.aisearch-content {
+    border: 1px solid #cccccc;
+    padding: 15px;
+    background: #ffffff;
+    border-radius: 0 0 3px 3px;
+}
+
+.aisearch-content .tab-pane {
+    display: none;
+}
+
+.aisearch-content .tab-pane.active {
+    display: block;
+}
+
+/* Image search */
+.image-search-container {
+    text-align: center;
+}
+
+#image-search-droparea {
+    border: 2px dashed #cccccc;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#image-search-droparea.active {
+    border-color: #006bb4;
+    background: #f0f7fc;
+}
+
+#image-search-droparea p {
+    margin: 0;
+    font-size: 14px;
+    color: #666666;
+}
+
+#image-search-button {
+    background: #006bb4;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+#image-search-button:hover {
+    background: #00558a;
+}
+
+#image-search-file {
+    display: none;
+}
+
+#image-search-preview {
+    display: none;
+    margin: 15px auto;
+    max-width: 300px;
+    max-height: 200px;
+    text-align: center;
+}
+
+#image-search-preview img {
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+}
+
+/* Voice search */
+.voice-search-container {
+    text-align: center;
+}
+
+#voice-search-button {
+    background: #006bb4;
+    color: #ffffff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 3px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+#voice-search-button:hover {
+    background: #00558a;
+}
+
+#voice-search-button.recording {
+    background: #e91e63;
+    animation: pulse 1.5s infinite;
+}
+
+#voice-search-button svg {
+    margin-right: 8px;
+}
+
+#voice-search-text {
+    width: 100%;
+    margin: 15px 0;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+}
+
+/* Status message */
+.aisearch-status {
+    margin: 15px 0;
+    padding: 10px;
+    background: #f8f8f8;
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    display: none;
+}
+
+/* Animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(233, 30, 99, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(233, 30, 99, 0);
+    }
+}
+
+/* Responsive */
+@media only screen and (max-width: 767px) {
+    .aisearch-tabs .tab {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+    
+    .aisearch-content {
+        padding: 10px;
+    }
+}
